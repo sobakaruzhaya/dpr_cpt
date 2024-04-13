@@ -41,6 +41,10 @@ def get_analog_price(d):
         if columns.values[1] == d:
             return columns.values[3]
 
+def check_price(price):
+	return bool(price)
+
+price_corr = False
 
 def main(filename):
 	print(1)
@@ -140,13 +144,19 @@ def main(filename):
 		price = 1
 
 	
+	
+		
+
+	
 	data = {'Наименование файла':[f"{filename}.jpg"], 'Категория продукта':[d],'Цена': [price]}
 	df = pd.DataFrame(data)
 	df.to_csv('output.csv', encoding='utf-8',index=False,sep=";")
 
-	cursor.execute("INSERT INTO data VALUES(?,?,?,?,?)",(f"{filename}.jpg",a[0],a[1],0,0))
+	cursor.execute("INSERT INTO data VALUES(?,?,?,?,?)",(f"{filename}.jpg",a[0],a[1],0,price))
 	connection.commit()
 	
+
+
 
 
 if __name__ == "__main__":
