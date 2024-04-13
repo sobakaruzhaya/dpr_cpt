@@ -14,7 +14,7 @@
         <nav class="navbar">
             <ul class="link-group">
                 <li class="link main-link"><a href="">Глаз народа</a></li>
-                {%if 'id' not in session %}
+                {%if (session['id'] == None) or ('id' not in session) %}
                 <script async
                         src="https://telegram.org/js/telegram-widget.js?16"
                         data-telegram-login="cpthack_bot"
@@ -22,6 +22,8 @@
                         data-auth-url="https://a993-92-255-142-79.ngrok-free.app/profile"
                         data-request-access="write">
                 </script>
+                {%else%}
+                <li class="link"><a href="/profile">Профиль</a></li>
                 {%endif%}
                 <li class="link"><a href="#threate">Рейтинг</a></li>
 

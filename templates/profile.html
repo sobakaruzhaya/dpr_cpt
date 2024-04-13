@@ -19,8 +19,10 @@
         </nav>
         
         <div class="profile">
-            <img src="{{ request.args.get('photo_url', None) }}" alt="">
-            <p>{{ request.args.get('first_name', None) }}</p>
+            <img src="{{avatar}}" alt="">
+            <p>{{username}}</p>
+            <p>Количество запросов: {{colvo}}</p>
+
         </div>
         
     </header>

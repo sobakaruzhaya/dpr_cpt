@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session
+from flask import Flask, render_template, request, session, redirect
 from werkzeug.utils import secure_filename
 import os, random
 import hashlib, hmac
@@ -10,7 +10,14 @@ from flask_session import Session
 conn = sqlite3.connect('database.db', check_same_thread=False)
 c = conn.cursor()
 
-
+c.execute("""CREATE TABLE IF NOT EXISTS users(
+			   id TEXT,
+			   username TEXT,
+			   first_name TEXT,
+			   img_url TEXT,
+               foto_count TEXT DEFAULT '0'
+)""")
+conn.commit()
 
 app = Flask(__name__)
 app.secret_key = 'bebe'
@@ -38,6 +45,8 @@ def allowed_file(filename):
 @app.route('/', methods=['GET', 'POST'])
 def hello_world():  # put application's code here
     if request.method == 'POST':
+        if 'id' not in session:
+            return redirect("/")
         file = request.files['file']
         if file and allowed_file(file.filename):
             filename = f"{random.randint(11000, 99999)}" + secure_filename(file.filename)
@@ -46,17 +55,28 @@ def hello_world():  # put application's code here
             c.execute("SELECT * FROM data WHERE img = ?",(filename,))
             data = c.fetchone()
             print(data)
+            c.execute("UPDATE users SET `foto_count`=`foto_count`+1 WHERE id = (?)",(session['id'],))
             return render_template("uploaded.html", filename=filename, name=data[1], rub=data[2],kop=data[3])
     return render_template("main.html",session=session)
+
+
+
 @app.route('/profile')
 def profile():
     tele_id = request.args.get('id', None)
-    c.execute("""
-            INSERT OR REPLACE INTO users (id, username, first_name, img_url) VALUES (?, ?, ?, ?);
-        """, (tele_id, request.args.get('username', None), request.args.get('first_name', None), request.args.get('photo_url', None)))
-    conn.commit()
-    session['id'] = tele_id
-    return render_template("profile.html")
+    if ('id' not in session) or (session['id'] == None):
+        session['id'] = tele_id
+    c.execute("SELECT * FROM users WHERE id = (?)",(session['id'] ,))
+    user = c.fetchone()
+    if user == None:
+        c.execute("""
+                INSERT  INTO users (id, username, first_name, img_url) VALUES (?, ?, ?, ?);
+            """, (tele_id, request.args.get('username', None), request.args.get('first_name', None), request.args.get('photo_url', None)))
+        conn.commit()
+
+    c.execute("SELECT * FROM users WHERE id = (?)",(session['id'],))
+    user = c.fetchone()
+    return render_template("profile.html",username=user[2],avatar=user[3],colvo=user[4])
 
 
 @app.route('/login/telegram')
