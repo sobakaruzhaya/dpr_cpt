@@ -21,7 +21,6 @@ UPLOAD_FOLDER = 'static/img/uploads'
 
 # расширения файлов, которые разрешено загружать
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
-
 # конфигурируем
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 

@@ -10,7 +10,8 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS data(
 			   img TEXT,
 			   name TEXT,
 			   rub TEXT,
-			   kop TEXT
+			   kop TEXT,
+			   soc_prise INT
 )""")
 connection.commit()
 # Загрузка модели YOLO
@@ -59,7 +60,7 @@ def main(filename):
 			a.append(text)
 		else:
 			a.append(text)
-	cursor.execute("INSERT INTO data VALUES(?,?,?,?)",(f"{filename}.jpg",a[0],a[1],a[2]))
+	cursor.execute("INSERT INTO data VALUES(?,?,?,?,?)",(f"{filename}.jpg",a[0],a[1],a[2],0))
 	connection.commit()
 
 
