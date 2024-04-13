@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Ваш профиль</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <ul class="link-group">
+                <li class="link main-link"><a href="https://54c6-46-146-231-212.ngrok-free.app">Глаз народа</a></li>
+                <li class="link"><a href="https://54c6-46-146-231-212.ngrok-free.app/profile">Профиль</a></li>
+                <li class="link"><a href="#threate">Рейтинг</a></li>
+
+
+            </ul>
+
+        </nav>
+        
+        <div class="profile">
+            <img src="{{ request.args.get('photo_url', None) }}" alt="">
+            <p>{{ request.args.get('first_name', None) }}</p>
+        </div>
+        
+    </header>
+</body>
+</html>

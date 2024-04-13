@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="icon" type="image/svg+xml" href="/vite.svg"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Vite + React</title>
+</head>
+
+<body>
+<div id="root">
+    <header>
+        <nav class="navbar">
+            <ul class="link-group">
+                <li class="link main-link"><a href="">Глаз народа</a></li>
+                <script async
+                        src="https://telegram.org/js/telegram-widget.js?16"
+                        data-telegram-login="cpthack_bot"
+                        data-size="large"
+                        data-auth-url="https://54c6-46-146-231-212.ngrok-free.app/profile"
+                        data-request-access="write">
+                </script>
+                <li class="link"><a href="#threate">Рейтинг</a></li>
+
+
+            </ul>
+
+        </nav>
+    </header>
+    <form action="" method=post enctype="multipart/form-data">
+        <p><input type=file name=file>
+            <input type=submit value=Upload>
+    </form>
+</div>
+</body>
+</html>
