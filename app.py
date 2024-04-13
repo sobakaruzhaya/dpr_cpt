@@ -1,4 +1,4 @@
-from flask import Flask, flash, render_template, request, redirect, session
+from flask import Flask, render_template, request, session
 from werkzeug.utils import secure_filename
 import os, random
 import hashlib, hmac
@@ -20,7 +20,7 @@ Session(app)
 UPLOAD_FOLDER = 'static/img/uploads'
 
 # расширения файлов, которые разрешено загружать
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+ALLOWED_EXTENSIONS = {'jpg'}
 # конфигурируем
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 

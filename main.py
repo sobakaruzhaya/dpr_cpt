@@ -1,4 +1,4 @@
-import cv2
+import pandas as pd
 import easyocr
 from ultralytics import YOLO
 import os
@@ -60,6 +60,10 @@ def main(filename):
 			a.append(text)
 		else:
 			a.append(text)
+	data = {'Наименование файла':[f"{filename}.jpg"], 'Категория продукта':[a[0]],'Цена':[1]}
+	df = pd.DataFrame(data)
+	df.to_csv('output.csv', encoding='utf-8',index=False,sep=";")
+
 	cursor.execute("INSERT INTO data VALUES(?,?,?,?,?)",(f"{filename}.jpg",a[0],a[1],a[2],0))
 	connection.commit()
 
