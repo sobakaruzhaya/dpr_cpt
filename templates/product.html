@@ -15,11 +15,15 @@
     <div class="main-product">
         <img src="{{url_for('static', filename='img/uploads/' + filename)}}"  />
         <div class="text-product">
-            <p><span>Продукт:</span>{{name}}</p>
-            <p><span>Цена:</span>{{rub}}.{{kop}}</p>
-            <p><span>Цена в Ростове:</span></p>
-            <p><span>Продукт:</span><u>Рекомендуется</u></p>
-            <input type="button" class="btn-main2" value="Отправить результат" />
+            <p><span>Продукт: </span>{{name}}</p>
+            <p><span>Цена: </span>{{rub}}.{{kop}} РУБ</p>
+            {%if soc == 0%}
+            <p><span>К покупке: </span><u>Рекомендуется</u></p>
+            {%elif soc == 1%}
+            <p><span>К покупке: </span><u style="color: rgb(240, 18, 18);">Не Рекомендуется</u></p>
+            {%else%}
+            <p><span>К покупке: </span><u style="color: rgb(21, 21, 24);">Продукт не является социальным</u></p>
+            {%endif%}
         </div>
     </div>
     <div class="footer">

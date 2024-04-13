@@ -137,7 +137,7 @@ def main(filename):
 		d = "Прочее"
 
 	if d == "Прочее" or "социальная" not in a[0].lower():
-		price = 0
+		price = 2
 	elif float(a[1]) <= get_analog_price(d):
 		price = 0
 	else:
