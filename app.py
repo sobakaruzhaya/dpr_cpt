@@ -1,26 +1,27 @@
-from flask import Flask, flash, render_template, request, redirect, url_for
+from flask import Flask, flash, render_template, request, redirect, session
 from werkzeug.utils import secure_filename
 import os, random
 import hashlib, hmac
 import sqlite3
-from detection import detect_price
+from main import main
+from flask_session import Session
 
 
-
+conn = sqlite3.connect('database.db', check_same_thread=False)
+c = conn.cursor()
 
 
 
 app = Flask(__name__)
-app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+app.secret_key = 'bebe'
 app.config['SESSION_TYPE'] = 'filesystem'
+Session(app)
 
 UPLOAD_FOLDER = 'static/img/uploads'
 
 # расширения файлов, которые разрешено загружать
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
-# создаем экземпляр приложения
-app = Flask(__name__)
 # конфигурируем
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -42,17 +43,20 @@ def hello_world():  # put application's code here
         if file and allowed_file(file.filename):
             filename = f"{random.randint(11000, 99999)}" + secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            price = detect_price(url_for('static', filename="img/uploads/" + filename))
-            return render_template("uploaded.html", filename=filename)
-    return render_template("main.html")
+            main(filename.replace(".jpg", ""))
+            c.execute("SELECT * FROM data WHERE img = ?",(filename,))
+            data = c.fetchone()
+            print(data)
+            return render_template("uploaded.html", filename=filename, name=data[1], rub=data[2],kop=data[3])
+    return render_template("main.html",session=session)
 @app.route('/profile')
 def profile():
-    conn = sqlite3.connect('database.db')
-    c = conn.cursor()
+    tele_id = request.args.get('id', None)
     c.execute("""
             INSERT OR REPLACE INTO users (id, username, first_name, img_url) VALUES (?, ?, ?, ?);
-        """, (request.args.get('id', None), request.args.get('username', None), request.args.get('first_name', None), request.args.get('photo_url', None)))
+        """, (tele_id, request.args.get('username', None), request.args.get('first_name', None), request.args.get('photo_url', None)))
     conn.commit()
+    session['id'] = tele_id
     return render_template("profile.html")
 
 

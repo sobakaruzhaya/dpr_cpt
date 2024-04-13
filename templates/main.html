@@ -5,7 +5,7 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Vite + React</title>
+    <title>Глаз народа</title>
 </head>
 
 <body>
@@ -14,13 +14,15 @@
         <nav class="navbar">
             <ul class="link-group">
                 <li class="link main-link"><a href="">Глаз народа</a></li>
+                {%if 'id' not in session %}
                 <script async
                         src="https://telegram.org/js/telegram-widget.js?16"
                         data-telegram-login="cpthack_bot"
                         data-size="large"
-                        data-auth-url="https://54c6-46-146-231-212.ngrok-free.app/profile"
+                        data-auth-url="https://a993-92-255-142-79.ngrok-free.app/profile"
                         data-request-access="write">
                 </script>
+                {%endif%}
                 <li class="link"><a href="#threate">Рейтинг</a></li>
 
 
