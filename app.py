@@ -40,9 +40,11 @@ def allowed_file(filename):
 # def tickets():
 #     if request.method == 'POST':
 
+@app.route('/')
+def login():
+    return render_template("login.html")
 
-
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
 def hello_world():  # put application's code here
     if request.method == 'POST':
         if 'id' not in session:
@@ -56,8 +58,8 @@ def hello_world():  # put application's code here
             data = c.fetchone()
             print(data)
             c.execute("UPDATE users SET `foto_count`=`foto_count`+1 WHERE id = (?)",(session['id'],))
-            return render_template("uploaded.html", filename=filename, name=data[1], rub=data[2],kop=data[3])
-    return render_template("main.html",session=session)
+            return render_template("product.html", filename=filename, name=data[1], rub=data[2],kop=data[3])
+    return render_template("index.html",session=session)
 
 
 

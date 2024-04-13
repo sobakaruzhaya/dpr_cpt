@@ -12,14 +12,15 @@
         <img src="{{ url_for('static', filename='img/svg/logo.svg') }}" id="logo"/>
         <p>Глаз народа</p>
     </div>
-    <div class="ava">
-        <img src="{{avatar}}" />
-        <div class="FIO">
-                {{username}}
+    <div class="main-product">
+        <img src="{{url_for('static', filename='img/uploads/' + filename)}}"  />
+        <div class="text-product">
+            <p><span>Продукт:</span>{{name}}</p>
+            <p><span>Цена:</span>{{rub}}.{{kop}}</p>
+            <p><span>Цена в Ростове:</span></p>
+            <p><span>Продукт:</span><u>Рекомендуется</u></p>
+            <input type="button" class="btn-main2" value="Отправить результат" />
         </div>
-    </div>
-    <div class="priceQ">
-        <p><span>Отправлено:</span> {{colvo}} ценников</p>
     </div>
     <div class="footer">
         <div class="fot1">

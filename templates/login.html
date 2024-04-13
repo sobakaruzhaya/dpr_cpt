@@ -7,19 +7,24 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body>
+<body>  
     <div class="head">
         <img src="{{ url_for('static', filename='img/svg/logo.svg') }}" id="logo"/>
         <p>Глаз народа</p>
     </div>
-    <div class="ava">
-        <img src="{{avatar}}" />
-        <div class="FIO">
-                {{username}}
+    <div class="mainBlock">
+        <h1>
+            Вход
+        </h1>
+        <div class="input__wrapper">
+            <script async
+                src="https://telegram.org/js/telegram-widget.js?16"
+                data-telegram-login="cpthack_bot"
+                data-size="large"
+                data-auth-url="https://a993-92-255-142-79.ngrok-free.app/profile"
+                data-request-access="write">
+            </script>
         </div>
-    </div>
-    <div class="priceQ">
-        <p><span>Отправлено:</span> {{colvo}} ценников</p>
     </div>
     <div class="footer">
         <div class="fot1">

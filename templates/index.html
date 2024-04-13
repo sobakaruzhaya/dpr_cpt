@@ -7,19 +7,19 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body>
+<body>  
     <div class="head">
         <img src="{{ url_for('static', filename='img/svg/logo.svg') }}" id="logo"/>
         <p>Глаз народа</p>
     </div>
-    <div class="ava">
-        <img src="{{avatar}}" />
-        <div class="FIO">
-                {{username}}
-        </div>
-    </div>
-    <div class="priceQ">
-        <p><span>Отправлено:</span> {{colvo}} ценников</p>
+    <div class="mainBlock">
+        <h1>
+            Главная
+        </h1>
+        <form action="" method=post enctype="multipart/form-data">
+            <p><input type=file name=file>
+                <input type=submit class="btn-main2" value="Загрузить ценник">
+        </form>
     </div>
     <div class="footer">
         <div class="fot1">
