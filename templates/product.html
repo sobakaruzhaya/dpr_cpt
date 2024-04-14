@@ -24,7 +24,12 @@
             {%else%}
             <p><span>К покупке: </span><u style="color: rgb(21, 21, 24);">Продукт не является социальным</u></p>
             {%endif%}
+            <button onclick="admin()">Отправить на рассмотрение администрацией</button>
         </div>
+        
+        
+        
+
     </div>
     <div class="footer">
         <div class="fot1">
@@ -35,3 +40,9 @@
     </div>
 </body>
 </html>
+
+<script>
+    const admin = () => {
+        window.open('mailto:alex.sinitca@icloud.com?subject=Проблема с ценообразованием в магазине&body=');
+    }
+</script>
