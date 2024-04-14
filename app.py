@@ -59,7 +59,9 @@ def hello_world():  # put application's code here
             print(data)
             c.execute("UPDATE users SET `foto_count`=`foto_count`+1 WHERE id = (?)",(session['id'],))
             conn.commit()
+            
             return render_template("product.html", filename=filename, name=data[1], rub=data[2],kop=data[3],soc=data[4])
+            
     return render_template("index.html",session=session)
 
 

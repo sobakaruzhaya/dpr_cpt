@@ -118,3 +118,12 @@
     margin-top:130px;
     text-align:center;
 }
+
+input[type=text] {
+    margin-top: 1%;
+}
+
+input[type=submit]{
+    
+    justify-content: center;
+}
