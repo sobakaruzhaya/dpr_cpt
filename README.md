@@ -9,3 +9,11 @@ pip install flask pandas flask_session werkzeug ultralytics easyocr openpyxl
 ```
 2. Запустите app.py
 3. Сайт также доступен по [ссылке](https://e91f-92-255-142-79.ngrok-free.app)
+
+
+# Пользовательский интерфейс
+## Вход
+![login](login.jpg)
+
+## Результат обработки ценника
+![screen](img.jpg)
