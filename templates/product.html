@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Глаз народа</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="head">
+        <img src="{{ url_for('static', filename='img/svg/logo.svg') }}" id="logo"/>
+        <p>Глаз народа</p>
+    </div>
+    <div class="main-product">
+        <img src="{{url_for('static', filename='img/uploads/' + filename)}}"  />
+        <div class="text-product">
+            <p><span>Продукт: </span>{{name}}</p>
+            <p><span>Цена: </span>{{rub}}.{{kop}} РУБ</p>
+            {%if soc == 0%}
+            <p><span>К покупке: </span><u>Рекомендуется</u></p>
+            {%elif soc == 1%}
+            <p><span>К покупке: </span><u style="color: rgb(240, 18, 18);">Не Рекомендуется</u></p>
+            {%else%}
+            <p><span>К покупке: </span><u style="color: rgb(21, 21, 24);">Продукт не является социальным</u></p>
+            {%endif%}
+            <button onclick="admin()">Отправить на рассмотрение администрацией</button>
+        </div>
+        
+        
+        
+
+    </div>
+    <div class="footer">
+        <div class="fot1">
+            <a href=""><img src="{{ url_for('static', filename='img/svg/foot1.svg') }}" /></a>
+            <a href="/index"><img src="{{ url_for('static', filename='img/svg/foot2.svg') }}" /></a>
+            <a href="/profile"><img src="{{ url_for('static', filename='img/svg/foot3.svg') }}" /></a>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    const admin = () => {
+        window.open('mailto:alex.sinitca@icloud.com?subject=Проблема с ценообразованием в магазине&body=');
+    }
+</script>
