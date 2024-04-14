@@ -151,7 +151,8 @@ def main(filename):
 	data = {'Наименование файла':[f"{filename}.jpg"], 'Категория продукта':[d],'Цена': [price]}
 	df = pd.DataFrame(data)
 	df.to_csv('output.csv', encoding='utf-8',index=False,sep=";")
-
+	while len(a)<= 3: 
+		a.append("None")
 	cursor.execute("INSERT INTO data VALUES(?,?,?,?,?)",(f"{filename}.jpg",a[0],a[1],0,price))
 	connection.commit()
 	
